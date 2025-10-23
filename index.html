@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Төрсөн өдрийн кино урилга</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Indie+Flower&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Comic Neue', cursive;
+            background-color: #fff9e6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            border: 2px dashed #ff9ec0;
+        }
+        
+        h1 {
+            color: #756bff;
+            text-align: center;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 25px;
+        }
+        
+        .movie-icon {
+            display: block;
+            margin: 0 auto 20px;
+            font-size: 3em;
+            text-align: center;
+        }
+        
+        .details {
+            background-color: #f0f7ff;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #6bb5ff;
+        }
+        
+        .responsibilities {
+            display: flex;
+            justify-content: space-between;
+            margin: 25px 0;
+        }
+        
+        .my-task, .your-task {
+            width: 48%;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        
+        .my-task {
+            background-color: #e6f7e6;
+            border: 2px solid #7ed07e;
+        }
+        
+        .your-task {
+            background-color: #fff0f5;
+            border: 2px solid #ff9ec0;
+        }
+        
+        h2 {
+            color: #756bff;
+            border-bottom: 2px dotted #ffb6d1;
+            padding-bottom: 5px;
+        }
+        
+        ul {
+            padding-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .rsvp {
+            text-align: center;
+            margin-top: 30px;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        .handwritten {
+            font-family: 'Indie Flower', cursive;
+            font-size: 1.2em;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #888;
+            font-size: 0.9em;
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #ff6b9c;
+            border-radius: 50%;
+            opacity: 0.7;
+        }
+        
+        /* Form Styles */
+        .form-container {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            border: 2px solid #6bb5ff;
+        }
+        
+        .date-choices {
+            margin: 20px 0;
+        }
+        
+        .date-choices ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .date-choices li {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: white;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        
+        label {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+        
+        input[type="radio"], input[type="date"] {
+            margin-right: 10px;
+        }
+        
+        #msg {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Comic Neue', cursive;
+        }
+        
+        button {
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-family: 'Comic Neue', cursive;
+            display: block;
+            margin: 20px auto 0;
+        }
+        
+        button:hover {
+            background-color: #ff5252;
+        }
+        
+        .long-radio-text {
+            font-style: italic;
+            color: #666;
+        }
+        
+        .form-title {
+            text-align: center;
+            color: #ff6b9c;
+            margin-bottom: 15px;
+        }
+        
+        .time-options {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #f0f8ff;
+            border-radius: 8px;
+            border: 1px solid #cce7ff;
+        }
+        
+        .time-options h3 {
+            margin-top: 0;
+            color: #4a90e2;
+            font-size: 1.1em;
+        }
+        
+        .time-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .time-option {
+            display: flex;
+            align-items: center;
+        }
+        
+        .time-option input {
+            margin-right: 5px;
+        }
+        
+        .no-option {
+            background-color: #fff0f0;
+            border: 1px solid #ffcccc;
+        }
+        
+        .no-option label {
+            color: #d9534f;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Урдчилсан Төрсөн Өдрийн Мэнд Uransuna!</h1>
+        <p class="subtitle"> жинхэнэ төрсөн өдрөөс хэдэн хоногийн өмнөх тэмдэглэлт</p>
+        
+        <div class="movie-icon">🎬 🎉</div>
+        
+        <div class="details">
+            <h2>Үйл явдлын мэдээлэл</h2>
+            <p><strong>Юу:</strong> Төрсөн өдрийн кино тэмдэглэлт</p>
+            <p><strong>Хэзээ:</strong> Баасан эсвэл Ням гараг (доороос сонгоно)</p>
+            <p><strong>Хаана:</strong> Кино театр - Ыhangrila-ийн ӨРГӨӨ </p>
+            <p><strong>Цаг:</strong> Бас сонгоно </p>
+        </div>
+        
+
+<div class="responsibilities">
+            <div class="my-task">
+                <h2>Миний үүрэг</h2>
+                <ul>
+                    <li>Үйл явдлыг төлөвлөх</li>
+                    <li>Киноны тасалбар авах</li>
+                    <li>Кино театр сонгох</li>
+                </ul>
+            </div>
+            
+            <div class="your-task">
+                <h2>Чиний үүрэг</h2>
+                <ul>
+                    <li>Амттай хоол, амттай юм авчрах</li>
+                    <li>Киноны санал дэмжих</li>
+                    <li>Зөндөө юм ярих</li>
+                </ul>
+            </div>
+        </div>
+<p class="rsvp">Urgoo дээр хувиар нь байдгүү тэгэхээр киногүү очоод л сонгох нь дээ! Smashing machine гэд кино 24-нд нээлтээ хийнэ trailer ын үзхэд гоё кино шиг байсан!</p>
+        
+        <!-- RSVP Form -->
+        <div class="form-container">
+            <h2 class="form-title">Өдрөө сонгоно уу</h2>
+            <form id="myForm" action="https://formsubmit.co/gamerjakka@gmail.com" method="POST">
+                <div class="date-choices">
+                    <ul>
+                       <li>
+                           <label>
+                               <input type="radio" name="selected_date" value="Баасан гариг" required>
+                               Баасан гариг (Маргааш)
+                           </label>
+                       </li>
+                       <li>
+                           <label>
+                               <input type="radio" name="selected_date" value="Ням гариг">
+                               Ням гариг 
+                           </label>
+                       </li>
+                       
+                       <!-- Time Options -->
+                       <li>
+                           <div class="time-options">
+                               <h3>Цаг сонгох:</h3>
+                               <div class="time-grid">
+                                   <div class="time-option">
+                                       <input type="radio" id="time1" name="selected_time" value="10:00">
+                                       <label for="time1">10:00</label>
+                                   </div>
+                                   <div class="time-option">
+                                       <input type="radio" id="time2" name="selected_time" value="12:00">
+                                       <label for="time2">12:00</label>
+                                   </div>
+                                   <div class="time-option">
+                                       <input type="radio" id="time3" name="selected_time" value="14:00">
+                                       <label for="time3">14:00</label>
+                                   </div>
+                                   <div class="time-option">
+                                       <input type="radio" id="time4" name="selected_time" value="16:00">
+                                       <label for="time4">16:00</label>
+                                   </div>
+                                   
+                               </div>
+                           </div>
+                       </li>
+                       
+                       <!-- No Option -->
+                       <li class="no-option">
+                           <label>
+                               <input type="radio" name="selected_date" value="Чадхгүй">
+                               Үгүээ хө
+                           </label>
+                       </li>
+                       
+                       <li>
+                           <label>
+                               <input type="text" name="message" id="msg" placeholder="Нэмэлт санал, мэссэж бичих...">
+                           </label>
+                       </li>
+                    </ul>
+                </div>
+
+                <button type="submit">Илгээх</button>
+            </form>
+        </div>
+        
+        
+        
+        
+        <div class="footer">
+            <p> </p>
+        </div>
+    </div>
+
+    <script>
+        // Simple confetti effect
+        function createConfetti() {
+            const colors = ['#ff6b9c', '#6bb5ff', '#7ed07e', '#ffd166'];
+            for (let i = 0; i < 30; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = Math.random() * 100 + 'vh';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.transform = `scale(${Math.random() * 0.5 + 0.5})`;
+                document.body.appendChild(confetti);
+            }
+        }
+
+
+        
+        // Add confetti when page loads
+        window.addEventListener('load', createConfetti);
+   
+        // Form submission alert
+        document.getElementById('myForm').addEventListener('submit', function(e) {
+           // e.preventDefault(); // This stops the redirect
+            alert('Таны хариуг илгээлээ! Баярлалаа ❤️');
+        });
+        
+        // Automatically select time when date is selected
+        document.querySelectorAll('input[name="selected_date"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.value !== 'Чадхгүй') {
+                    // Auto-select a default time if date is selected
+                    const timeRadios = document.querySelectorAll('input[name="selected_time"]');
+                    if (!Array.from(timeRadios).some(radio => radio.checked)) {
+                        timeRadios[2].checked = true; // Default to 14:00
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
